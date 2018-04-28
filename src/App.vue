@@ -33,7 +33,13 @@ html,body{ width:100%; height:100%; }
   text-align: center;
   color: #2c3e50;
   height:100%;
-  /* //背景音乐 */
-  .bgMusic{ display:block; width:75px; height:75px; border-radius: 100%; background:lightskyblue; }
+  /* 背景音乐 */
+  .bgMusic{ position:fixed; top:30px; right:30px; width:75px; height:75px; border-radius: 100%; background:url(/static/images/msign.png) no-repeat center center/cover pink; background-size:90% auto;
+    animation: rotateM 3s linear infinite;
+  }
+  @keyframes rotateM {
+    0% { transform: rotateZ(0) }
+    100% { transform: rotateZ(-360deg) }
+  }
 }
 </style>
