@@ -17,7 +17,8 @@ module.exports = {
     video: ['src', 'poster'],
     source: 'src',
     img: 'src',
-    image: 'xlink:href'
+    image: 'xlink:href',
+    "audio": "src"
   },
   /*因为我是以750px(iphone6)宽度为基准，所以remUnit为75*/
   postcss: [require('postcss-px2rem')({ 'remUnit': 75, 'baseDpr': 2 })]          
