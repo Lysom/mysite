@@ -1,16 +1,15 @@
 <template>
   <div id="app">
-    <audio id="audio1" src="/static/music/planet.mp3" autoplay="autoplay" loop="loop" preload="auto"  @play="greet">
-      Your browser does not support the audio tag.
-    </audio>
-    <div class="bgMusic" :class="{play:isPlayed}" @click="togglePlayState"></div>
+    <music></music>
     <router-view/>
   </div>
 </template>
 
 <script>
+import music from './components/music'
 export default {
   name: 'App',
+  components: {music},
   data () {
     return {
       isPlayed: false,
@@ -45,12 +44,5 @@ html,body{ width:100%; height:100%; }
   text-align: center;
   color: #2c3e50;
   height:100%;
-  /* 背景音乐 */
-  .bgMusic { position:fixed; top:30px; right:30px; width:75px; height:75px; border-radius: 100%; background:url(/static/images/msign.png) no-repeat center center/cover pink; background-size:90% auto;}
-  .play { animation: rotateM 3s linear infinite; }
-  @keyframes rotateM {
-    0% { transform: rotateZ(0) }
-    100% { transform: rotateZ(-360deg) }
-  }
 }
 </style>
