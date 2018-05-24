@@ -1,36 +1,26 @@
 <template>
   <div id="app">
-    <music></music>
     <router-view/>
   </div>
 </template>
 
 <script>
-import music from './components/music'
+
 export default {
   name: 'App',
-  components: {music},
+  components: {
+
+  },
   data () {
     return {
-      isPlayed: false,
-      isPaused: false,
-      audioObj: null
+
     }
   },
   updated () {
-    this.audioObj = document.querySelector('#audio1')
+
   },
   methods: {
-    greet: function (event) {
-      event.target.volume = 0.01
-      this.isPlayed = true
-    },
-    togglePlayState: function () {
-      this.isPlayed = !this.isPlayed
-      this.isPaused = !this.isPaused
-      // console.log(this.audioObj)
-      this.isPaused ? this.audioObj.pause() : this.audioObj.play()
-    }
+
   }
 }
 </script>

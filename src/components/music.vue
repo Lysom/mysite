@@ -1,6 +1,6 @@
 <template>
   <div id="music" :class="{play:isPlayed}" @click="togglePlayState">
-    <audio id="audio1" src="/static/music/planet.mp3" autoplay="autoplay" loop="loop" preload="auto"  @play="greet">
+    <audio id="audio1" src="/static/music/planet.mp3" :autoplay="autoplay" :loop="loop" :preload="preload"  @play="greet">
       Your browser does not support the audio tag.
     </audio>
   </div>
@@ -12,29 +12,35 @@ export default {
   data () {
     return {
       isPlayed: false,
-      isPaused: false,
-      audioObj: null
+      // isPaused: false,
+      audioObj: null,
+      // 以下为播放初始状态
+      volume: 0.3, // 初始化播放音量
+      autoplay: true,
+      loop: true,
+      preload: 'auto'
     }
   },
   updated () {
+    console.log('music')
     this.audioObj = document.querySelector('#audio1')
   },
   methods: {
     greet: function (event) {
-      event.target.volume = 0.01
+      event.target.volume = this.volume
       this.isPlayed = true
     },
     togglePlayState: function () {
       this.isPlayed = !this.isPlayed
-      this.isPaused = !this.isPaused
+      // this.isPaused = !this.isPaused
       // console.log(this.audioObj)
-      this.isPaused ? this.audioObj.pause() : this.audioObj.play()
+      !this.isPlayed ? this.audioObj.pause() : this.audioObj.play()
     }
   }
 }
 </script>
 
-<style lang="less" scope>
+<style lang="less" scoped>
   /* 背景音乐 */
   #music { position:fixed; top:30px; right:30px; width:75px; height:75px; border-radius: 100%; background:url(/static/images/msign.png) no-repeat center center/cover pink; background-size:90% auto; }
   .play { animation: rotateM 3s linear infinite; }
