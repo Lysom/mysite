@@ -1,6 +1,7 @@
 <template>
    <div id="progressBar">
      <canvas class="progress">您的浏览器不支持canvas,请升级到最新版本</canvas>
+     <canvas class="progress">您的浏览器不支持canvas,请升级到最新版本</canvas>
    </div>
 </template>
 

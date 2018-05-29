@@ -29,7 +29,9 @@ export default function () {
     ctx.fillRect(0, 0, w, h)
 
     ctx.fillStyle = '#171814'
-    ctx.fillRect(25, 80, 350, 25)
+    ctx.strokeStyle = 'transparent'
+    var widths = this.widths
+    drawRoundRect(ctx, 25, 80, widths, 18, 9)
   }
 
   // 进度条
@@ -39,13 +41,31 @@ export default function () {
 
     this.draw = function () {
       ctx.fillStyle = 'hsla(' + this.hue + ', 100%, 40%, 1)'
-      ctx.fillRect(25, 80, this.widths, 25)
+      ctx.strokeStyle = 'transparent'
+      var widths = this.widths
+      drawRoundRect(ctx, 25, 80, widths, 18, 9)
       var grad = ctx.createLinearGradient(0, 0, 0, 130)
       grad.addColorStop(0, 'transparent')
       grad.addColorStop(1, 'rgba(0,0,0,0.5)')
       ctx.fillStyle = grad
-      ctx.fillRect(25, 80, this.widths, 25)
+      ctx.strokeStyle = 'transparent'
+      drawRoundRect(ctx, 25, 80, widths, 18, 9)
     }
+  }
+
+  // 绘制圆角
+  function drawRoundRect (cxt, x, y, width, height, radius) {
+    cxt.beginPath()
+    cxt.arc(x + radius, y + radius, radius, Math.PI, Math.PI * 3 / 2)
+    cxt.lineTo(width - radius + x, y)
+    cxt.arc(width - radius + x, radius + y, radius, Math.PI * 3 / 2, Math.PI * 2)
+    cxt.lineTo(width + x, height + y - radius)
+    cxt.arc(width - radius + x, height - radius + y, radius, 0, Math.PI * 1 / 2)
+    cxt.lineTo(radius + x, height + y)
+    cxt.arc(radius + x, height - radius + y, radius, Math.PI * 1 / 2, Math.PI)
+    cxt.closePath()
+    cxt.stroke()
+    cxt.fill()
   }
 
   // 散射点阵
